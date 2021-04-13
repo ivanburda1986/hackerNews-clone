@@ -4,15 +4,18 @@ import {BrowserRouter} from 'react-router-dom';
 
 import App from '../src/components/App';
 import reducer from './reducers';
-import middleware from './middleware';
 
 import {Provider} from 'react-redux';
-import {createStore} from 'redux'; 
+import {createStore, applyMiddleware, compose} from 'redux'; 
+import thunk from 'redux-thunk';
 
 import reportWebVitals from './reportWebVitals';
 
 
-const store = createStore(reducer, middleware);
+//Enabling the chrome Redux tools
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>
