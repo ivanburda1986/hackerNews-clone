@@ -1,10 +1,22 @@
 import * as React from 'react';
-function App() {
-  return (
-   <div>
-     <h1>Hello world</h1>
-   </div>
-  )
+
+import {handleDataTopnews} from '../actions/topnews';
+
+class App extends React.Component {
+
+  componentDidMount(){
+    handleDataTopnews();
+  }
+
+  render(){
+
+    return (
+      <div>
+        <h1>Hello world</h1>
+      </div>
+     )
+  }
+  
 }
 
 export default App;
