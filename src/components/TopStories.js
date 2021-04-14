@@ -3,7 +3,7 @@ import React from 'react';
 
 import {fetchTopStories} from '../utils/api';
 
-class TopStories extends React.Component{
+export default class TopStories extends React.Component{
 
   render(){
 
@@ -11,4 +11,4 @@ class TopStories extends React.Component{
       <h1>Top stories...</h1>
     );
   }
-}
+};
