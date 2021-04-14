@@ -21,3 +21,8 @@ https://github.com/HackerNews/API
 
 Finished project
 https://hn.ui.dev/
+
+
+
+//Advice
+https://learnwithparam.com/blog/how-to-handle-fetch-errors/

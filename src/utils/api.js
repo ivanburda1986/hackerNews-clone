@@ -2,11 +2,20 @@
 export function fetchTopStories(){
   const endpoint = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
   return fetch (endpoint)
-    .then((res)=>res.json())
-    .then((data)=>{
-      if(!data.items){
-        throw new Error.apply(data.message);
+    .then((response)=>{
+      if(response.status >= 200 && response.status <= 299){
+        return response.json();
+      } else {
+        console.log(response.status, response.statusText);
+        throw Error (response.statusText);
       }
-      return data.items;
     })
+    .then((jsonResponse)=>{
+      return jsonResponse;
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
 }
+
+
