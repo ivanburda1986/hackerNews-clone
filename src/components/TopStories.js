@@ -9,9 +9,10 @@ export default class TopStories extends React.Component{
   }
 
   componentDidMount(){
+    this.fetchTopStories();
   }
 
-  getTopStories = () => {
+  fetchTopStories = () => {
     fetchTopStories()
     .then((data)=>{
       console.log(data);
@@ -25,7 +26,7 @@ export default class TopStories extends React.Component{
     return(
       <React.Fragment>
         <h1>Top stories...</h1>
-        <button onClick={()=>this.getTopStories()}>Get stories</button>
+        <button onClick={()=>this.fetchTopStories()}>Get stories</button>
       </React.Fragment>
 
     );
