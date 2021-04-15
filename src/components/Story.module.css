@@ -1,0 +1,10 @@
+.Story{
+  display:flex;
+  flex-direction: column;
+  max-width: 500px; 
+}
+
+.StoryDetails{
+  display: flex;
+  flex-direction: row;
+}

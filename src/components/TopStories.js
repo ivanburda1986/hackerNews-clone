@@ -1,10 +1,9 @@
 import React from 'react';
 
 import Loading from './Loading';
+import Story from './Story';
+
 import {fetchTopStories} from '../utils/api';
-
-
-
 
 
 
@@ -13,7 +12,7 @@ import {fetchTopStories} from '../utils/api';
 
 export default class TopStories extends React.Component{
   state = {
-    topStories: {},
+    topStories: [],
     loading: false,
   }
 
@@ -27,6 +26,7 @@ export default class TopStories extends React.Component{
     })
     fetchTopStories()
     .then((data)=>{
+      console.log(data);
       this.setState({
         topStories: data,
         loading: false,
@@ -34,16 +34,33 @@ export default class TopStories extends React.Component{
     })
   }
 
+
+
   render(){
+    let stories = this.state.topStories.map(story=>(
+      <Story
+      key={story.id}
+      link={story.url}
+      title={story.title}
+      author={story.by}
+      date={story.time}
+      comments={story.kids}
+      />
+    ));
+    if(stories.length===0){
+      stories = <p>No stories yet</p>
+    }
+
+
 
     if(this.state.loading){
       return <Loading text='Loading'/>
     }
+    
 
     return(
       <React.Fragment>
-        <h1>Top stories...</h1>
-        <button onClick={()=>this.fetchTopStories()}>Get stories</button>
+        {stories}
       </React.Fragment>
 
     );
