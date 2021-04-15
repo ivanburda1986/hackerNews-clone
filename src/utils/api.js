@@ -34,7 +34,7 @@ function fetchTopStoriesIds(){
       }
     })
     .then((topStoriesIds)=>{
-      return topStoriesIds;
+      return topStoriesIds.slice(0,10);
     })
     .catch((error)=>{
       console.log(error);
@@ -42,5 +42,8 @@ function fetchTopStoriesIds(){
 };
 
 export function fetchTopStories(){
-  return fetchTopStoriesIds().then((topStoriesIds)=>topStoriesIds.slice(0,10));
+  return fetchTopStoriesIds()
+    .then(ids=>Promise.all(ids.map((item)=>getStoryDetails(item))));
 }
+
+

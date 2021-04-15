@@ -1,11 +1,20 @@
 import React from 'react';
 
-
+import Loading from './Loading';
 import {fetchTopStories} from '../utils/api';
+
+
+
+
+
+
+
+
 
 export default class TopStories extends React.Component{
   state = {
     topStories: {},
+    loading: false,
   }
 
   componentDidMount(){
@@ -13,15 +22,23 @@ export default class TopStories extends React.Component{
   }
 
   fetchTopStories = () => {
+    this.setState({
+      loading: true,
+    })
     fetchTopStories()
     .then((data)=>{
-      console.log(data);
+      this.setState({
+        topStories: data,
+        loading: false,
+      })
     })
   }
 
-
-
   render(){
+
+    if(this.state.loading){
+      return <Loading text='Loading'/>
+    }
 
     return(
       <React.Fragment>

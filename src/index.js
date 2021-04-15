@@ -8,10 +8,12 @@ class App extends React.Component{
   render(){
 
     return(
-      <React.Fragment>
-        <h1>Hello world</h1>
-        <TopStories/>
-      </React.Fragment>
+      <React.Suspense>
+        <React.Fragment>
+          <h1>Hello world</h1>
+          <TopStories/>
+        </React.Fragment> 
+      </React.Suspense>
     )
   }
 }
