@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Title from './Title';
+
 import {getHumanDate} from '../../utils/convertors';
 import classes from './Story.module.css';
+
 
 
 const Story = (props) => {
@@ -10,11 +13,11 @@ const Story = (props) => {
   return(
    <React.Fragment>
     <li className={classes.Story}>
-     <a className={classes.Title} href={props.link}>{props.title}</a>
+     <Title data={{id: props.id, title: props.title, url: props.url}}/>
      <div className={classes.StoryDetails}>
-       <div className={classes.author}><p>by </p>{props.author}</div>
-       <div className={classes.date}>{getHumanDate(props.date)}</div>
-       <div className={classes.comments}></div>
+       <div><p>by </p>{props.by}</div>
+       <div>{getHumanDate(props.time)}</div>
+       <div></div>
      </div>
    </li>
    </React.Fragment>
@@ -22,14 +25,16 @@ const Story = (props) => {
 }
 
 Story.propTypes = {
-  link: PropTypes.string,
+  id: PropTypes.number,
+  url: PropTypes.string,
   title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  date: PropTypes.number.isRequired,
+  by: PropTypes.string.isRequired,
+  time: PropTypes.number.isRequired,
   comments: PropTypes.array,
 }
 
 export default Story;
+
 
 
 

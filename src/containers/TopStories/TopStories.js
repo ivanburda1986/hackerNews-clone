@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 import Loading from '../../components/Loading/Loading';
 import Story from '../../components/Story/Story';
 
@@ -34,10 +36,11 @@ export default class TopStories extends React.Component{
     stories = stories.map(story=>(
       <Story
         key={story.id}
-        link={story.url}
+        id={story.id}
+        url={story.url}
         title={story.title}
-        author={story.by}
-        date={story.time}
+        by={story.by}
+        time={story.time}
         comments={story.kids}
       />
     ));
@@ -51,7 +54,9 @@ export default class TopStories extends React.Component{
     } else{
       return(
         <React.Fragment>
+          <ul>
           {stories}
+          </ul>
         </React.Fragment>
   
       );

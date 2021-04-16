@@ -1,4 +1,5 @@
 import React from 'react';
+import {Route} from 'react-router-dom';
 
 import Loading from '../../components/Loading/Loading';
 import Story from '../../components/Story/Story';
@@ -34,10 +35,11 @@ export default class NewStories extends React.Component{
     stories = stories.map(story=>(
       <Story
         key={story.id}
-        link={story.url}
+        id={story.id}
+        url={story.url}
         title={story.title}
-        author={story.by}
-        date={story.time}
+        by={story.by}
+        time={story.time}
         comments={story.kids}
       />
     ));

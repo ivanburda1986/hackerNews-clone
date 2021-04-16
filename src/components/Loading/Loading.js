@@ -8,13 +8,13 @@ export default class Loading extends React.Component{
     content: this.props.text
   }
 
-  componentDidMount(){
-    const {text} = this.props.text;
+  componentDidMount () {
+    const {text } = this.props;
     //Setting a variable in the way 'this.interval' in a function then the variable becomes globally accessible als from other functions
-    this.interval = window.setInterval(()=>{
-      this.state.content === (text + '...') ? this.setState({content: text}) : this.setState(({content})=>({content: content + '.'}));
-    },150)
-  };
+    this.interval =  window.setInterval(()=> {
+     this.state.content === (text + '...') ? this.setState({content: text}): this.setState(({content})=>({content:content +'.'}))
+   }, 200);
+ }
 
   componentWillUnmount() {
     window.clearInterval(this.interval);

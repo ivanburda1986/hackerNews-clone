@@ -14,6 +14,7 @@ function getStoryDetails(id){
     }
   })
   .then((storyDetails)=>{
+    console.log(storyDetails);
     return storyDetails;
   })
   .catch((error)=>{
@@ -34,7 +35,7 @@ function fetchStoriesIds(type){
       }
     })
     .then((storiesIds)=>{
-      return storiesIds.slice(0,10);
+      return storiesIds.slice(0,100);
     })
     .catch((error)=>{
       console.log(error);
