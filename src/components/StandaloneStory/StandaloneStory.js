@@ -7,6 +7,7 @@ import classes from './StandaloneStory.module.css';
 
 import Loading from '../Loading/Loading';
 import StoryMetadata from '../StoryMetadata/StoryMetadata';
+import Comments from '../../containers/Comments/Comments';
 
 export default class StandaloneStory extends React.Component{
   state = {
@@ -40,9 +41,9 @@ export default class StandaloneStory extends React.Component{
     return(
       <React.Fragment>
         <h1 className={classes.Title}>{this.state.story.title}</h1>
-        <StoryMetadata by={this.state.story.by} time={this.state.story.time}/>
-        <div className={classes.Text} dangerouslySetInnerHTML={{__html: this.state.story.text}}>
-        </div>
+        <StoryMetadata by={this.state.story.by} time={this.state.story.time} commentCount={this.state.story.descendants}/>
+        <div className={classes.Text} dangerouslySetInnerHTML={{__html: this.state.story.text}}></div>
+        <Comments comments={this.state.story.kids}/>
       </React.Fragment>
     );
   }

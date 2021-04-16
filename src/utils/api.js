@@ -1,7 +1,5 @@
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0'
 
-
-
 export function getStoryDetails(id){
   const endpoint = `${BASE_URL}/item/${id}.json?print=pretty`;
   return fetch (endpoint)
@@ -35,7 +33,7 @@ function fetchStoriesIds(type){
       }
     })
     .then((storiesIds)=>{
-      return storiesIds.slice(0,100);
+      return storiesIds.slice(0,600);
     })
     .catch((error)=>{
       console.log(error);

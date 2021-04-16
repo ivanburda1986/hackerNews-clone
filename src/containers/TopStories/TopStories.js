@@ -42,6 +42,7 @@ export default class TopStories extends React.Component{
         by={story.by}
         time={story.time}
         comments={story.kids}
+        commentCount={story.descendants}
       />
     ));
 

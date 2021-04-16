@@ -14,7 +14,7 @@ const Story = (props) => {
    <React.Fragment>
     <li className={classes.Story}>
      <Title data={{id: props.id, title: props.title, url: props.url}}/>
-     <StoryMetadata by={props.by} time={props.time}/>
+     <StoryMetadata by={props.by} time={props.time} commentCount={props.commentCount}/>
    </li>
    </React.Fragment>
   );  
@@ -27,6 +27,7 @@ Story.propTypes = {
   by: PropTypes.string.isRequired,
   time: PropTypes.number.isRequired,
   comments: PropTypes.array,
+  commentCount: PropTypes.number
 }
 
 export default Story;

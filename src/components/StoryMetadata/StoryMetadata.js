@@ -10,7 +10,7 @@ const StoryMetadata = (props) => {
     <div className={classes.StoryDetails}>
     <div><p>by</p><p>{props.by}</p></div>
     <div><p>on</p><p>{getHumanDate(props.time)}</p></div>
-    <div></div>
+    <div><p>with</p><p>{props.commentCount}</p><p>comments</p></div>
   </div>
   );
 }
