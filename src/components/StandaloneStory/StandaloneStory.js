@@ -5,11 +5,13 @@ import {getStoryDetails} from '../../utils/api';
 
 import classes from './StandaloneStory.module.css';
 
+import Loading from '../Loading/Loading';
 import StoryMetadata from '../StoryMetadata/StoryMetadata';
 
 export default class StandaloneStory extends React.Component{
   state = {
-    story: []
+    story: [],
+    loading: false,
   }
 
   componentDidMount(){
@@ -18,15 +20,23 @@ export default class StandaloneStory extends React.Component{
   }
 
   getStory = (id) => {
+    this.setState({
+      loading: true,
+    });
     getStoryDetails(id)
       .then((data)=>{
         this.setState({
           story: data,
+          loading: false,
         })
       })
   }
 
   render(){
+    if(this.state.loading){
+      return <Loading text="Loading"/>;
+    } else 
+    
     return(
       <React.Fragment>
         <h1 className={classes.Title}>{this.state.story.title}</h1>
