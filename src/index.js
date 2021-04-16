@@ -8,7 +8,7 @@ import classes from './index.module.css';
 import Navigation from './components/Navigation/Navigation';
 import TopStories from './containers/TopStories/TopStories';
 import NewStories from './containers/NewStories/NewStories';
-import StandaloneStory from './containers/StandaloneStory/StandaloneStory';
+import StandaloneStory from './components/StandaloneStory/StandaloneStory';
 
 
 class App extends React.Component{

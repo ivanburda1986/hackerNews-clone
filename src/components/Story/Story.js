@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Title from './Title';
+import StoryMetadata from '../StoryMetadata/StoryMetadata';
 
-import {getHumanDate} from '../../utils/convertors';
 import classes from './Story.module.css';
 
 
@@ -14,11 +14,7 @@ const Story = (props) => {
    <React.Fragment>
     <li className={classes.Story}>
      <Title data={{id: props.id, title: props.title, url: props.url}}/>
-     <div className={classes.StoryDetails}>
-       <div><p>by </p>{props.by}</div>
-       <div>{getHumanDate(props.time)}</div>
-       <div></div>
-     </div>
+     <StoryMetadata by={props.by} time={props.time}/>
    </li>
    </React.Fragment>
   );  

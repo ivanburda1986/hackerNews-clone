@@ -1,0 +1,22 @@
+.StoryDetails{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: left;
+  font-size: 0.9rem;
+  color:rgb(91, 94, 94);
+}
+
+.StoryDetails div{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  padding: 0.25em 0.5em;
+  padding-left: 0;
+}
+
+.StoryDetails p{
+  margin-right: 3px;
+}
