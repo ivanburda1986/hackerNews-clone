@@ -14,7 +14,8 @@ Display the first 50 general news
 
 
 
-
+Curriculum 
+https://github.com/uidotdev/react-course-curriculum
 
 Documentation 
 https://github.com/HackerNews/API

@@ -1,14 +1,9 @@
 import React from 'react';
 
-import Loading from './Loading';
-import Story from './Story';
+import Loading from '../../components/Loading/Loading';
+import Story from '../../components/Story/Story';
 
-import {fetchTopStories} from '../utils/api';
-
-
-
-
-
+import {fetchTopStories} from '../../utils/api';
 
 export default class TopStories extends React.Component{
   state = {
@@ -34,8 +29,6 @@ export default class TopStories extends React.Component{
     })
   }
 
-
-
   render(){
     let stories = this.state.topStories.map(story=>(
       <Story
@@ -51,10 +44,8 @@ export default class TopStories extends React.Component{
       stories = <p>No stories yet</p>
     }
 
-
-
     if(this.state.loading){
-      return <Loading text='Loading'/>
+      return <Loading text='Loading'/>;
     }
     
 
