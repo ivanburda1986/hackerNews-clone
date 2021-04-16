@@ -9,7 +9,7 @@ const Story = (props) => {
 
   return(
    <React.Fragment>
-     <li className={classes.Story}>
+    <li className={classes.Story}>
      <a className={classes.Title} href={props.link}>{props.title}</a>
      <div className={classes.StoryDetails}>
        <div className={classes.author}><p>by </p>{props.author}</div>

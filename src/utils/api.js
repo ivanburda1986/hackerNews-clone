@@ -22,8 +22,8 @@ function getStoryDetails(id){
 };
 
 
-function fetchTopStoriesIds(){
-  const endpoint = `${BASE_URL}/topstories.json?print=pretty`;
+function fetchStoriesIds(type){
+  const endpoint = `${BASE_URL}/${type}stories.json?print=pretty`;
   return fetch (endpoint)
     .then((response)=>{
       if(response.status >= 200 && response.status <= 299){
@@ -33,17 +33,17 @@ function fetchTopStoriesIds(){
         throw Error (response.statusText);
       }
     })
-    .then((topStoriesIds)=>{
-      return topStoriesIds.slice(0,10);
+    .then((storiesIds)=>{
+      return storiesIds.slice(0,10);
     })
     .catch((error)=>{
       console.log(error);
     });
 };
 
-export function fetchTopStories(){
-  return fetchTopStoriesIds()
-    .then(ids=>Promise.all(ids.map((item)=>getStoryDetails(item))));
+export async function fetchStories(type){
+  const ids = await fetchStoriesIds(type);
+  return await Promise.all(ids.map((item) => getStoryDetails(item)));
 }
 
 
