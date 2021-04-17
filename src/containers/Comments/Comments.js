@@ -3,6 +3,7 @@ import React from 'react';
 import {getStoryDetails} from '../../utils/api';
 
 import Loading from '../../components/Loading/Loading';
+import Comment from '../../components/Comment/Comment';
 
 import classes from './Comments.module.css';
 
@@ -10,9 +11,15 @@ import classes from './Comments.module.css';
 export default class Comments extends React.Component{
   state = {
     comments: [],
-    commentIds: this.props.comments,
+    commentIds: [],
     loading: false,
     triggered: false,
+  }
+
+  componentDidMount(){
+    this.setState({
+      commentIds: this.props.comments,
+    })
   }
 
   fetchComments = (id) => {
@@ -22,7 +29,7 @@ export default class Comments extends React.Component{
     
     getStoryDetails(id)
     .then((data)=>{
-      console.log(data);
+
       this.setState({
         comments: data,
         loading: false,
@@ -32,7 +39,7 @@ export default class Comments extends React.Component{
 
   render(){
     let myComment;
-    if(this.state.commentIds != undefined && this.state.triggered === false){
+    if(this.state.commentIds !== undefined && this.state.triggered === false){
       myComment = this.state.commentIds[0];
       this.fetchComments(myComment);
       this.setState({

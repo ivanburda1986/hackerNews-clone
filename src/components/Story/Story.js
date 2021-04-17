@@ -14,7 +14,7 @@ const Story = (props) => {
    <React.Fragment>
     <li className={classes.Story}>
      <Title data={{id: props.id, title: props.title, url: props.url}}/>
-     <StoryMetadata by={props.by} time={props.time} commentCount={props.commentCount}/>
+     <StoryMetadata by={props.by} time={props.time} commentCount={props.commentCount} id={props.id}/>
    </li>
    </React.Fragment>
   );  
