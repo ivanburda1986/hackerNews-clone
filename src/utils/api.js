@@ -12,8 +12,7 @@ export function getStoryDetails(id){
     }
   })
   .then((storyDetails)=>{
-    console.log(storyDetails);
-    return storyDetails;
+      return storyDetails;
   })
   .catch((error)=>{
     console.log(error);
@@ -33,7 +32,7 @@ function fetchStoriesIds(type){
       }
     })
     .then((storiesIds)=>{
-      return storiesIds.slice(0,600);
+      return storiesIds.slice(0,50);
     })
     .catch((error)=>{
       console.log(error);
@@ -42,7 +41,9 @@ function fetchStoriesIds(type){
 
 export async function fetchStories(type){
   const ids = await fetchStoriesIds(type);
-  return await Promise.all(ids.map((item) => getStoryDetails(item)));
+  //Create a standalone function that will filter the stories to make sure all of them have all attributes which I need further on
+  let cleanedStories = await Promise.all(ids.map((item) => getStoryDetails(item)));
+  cleanedStories = cleanedStories.filter((story)=>story!=null);
+  console.log(cleanedStories);
+  return cleanedStories;
 }
-
-
