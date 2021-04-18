@@ -23,8 +23,8 @@ const Story = (props) => {
 Story.propTypes = {
   id: PropTypes.number,
   url: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  by: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  by: PropTypes.string,
   time: PropTypes.number.isRequired,
   comments: PropTypes.array,
   commentCount: PropTypes.number

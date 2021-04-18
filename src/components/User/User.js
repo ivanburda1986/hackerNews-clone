@@ -2,6 +2,7 @@ import React from 'react';
 import queryString from 'query-string';
 
 import Loading from '../Loading/Loading';
+import Story from '../Story/Story';
 
 import {getUserData, getItemDetails} from '../../utils/api';
 
@@ -9,9 +10,9 @@ import {getUserData, getItemDetails} from '../../utils/api';
 export default class User extends React.Component{
   state = {
     userDetails: [],
-    commentDetails: [],
+    storyDetails: [],
     userLoading: false,
-    commentsLoading: false,
+    storysLoading: false,
   }
 
   componentDidMount(){
@@ -30,43 +31,49 @@ export default class User extends React.Component{
           userLoading: false,
         })
       })
-      .then(()=>{this.getUsersComments(this.state.userDetails.submitted);})
+      .then(()=>{this.getUsersStories(this.state.userDetails.submitted);})
   };
 
-  getUsersComments = (ids) => {
+  getUsersStories = (ids) => {
     this.setState({
-      commentsLoading: true,
+      storysLoading: true,
     });
     ids.forEach((id)=>{
       getItemDetails(id)
       .then((data)=>{
+        //Make sure that only stories are passed on
+       if (data.type === "story"){
         this.setState({
-          commentDetails: this.state.commentDetails.concat(data),
-          commentsLoading: false,
+          storyDetails: this.state.storyDetails.concat(data),
+          storysLoading: false,
         })
+       }
       })
     })
-  }
+  };
+
+    storiesDisplay = () => {
+      if(this.state.storysLoading){
+        return <Loading text="Loading"/>;
+      } else {
+        return (
+            this.state.storyDetails.map((story)=><Story key={story.id} id={story.id} title={story.title} url={story.url} by={story.by} time={story.time} />)
+        );
+      }
+    };
 
 
 
   render(){
-    if(this.state.userLoading){
-      return <Loading text="Loading"/>;
-    } else{
-      return(
-        <h1>{this.state.userDetails.id}</h1>
-        
-        
-
-      )
-
-    }
-
+    const content = this.storiesDisplay();
     return(
-      <h1>some loading</h1>
-    )
 
-    
+      <React.Fragment>
+      <h1>Comments</h1>
+      <ul>
+        {content}
+      </ul>
+      </React.Fragment>
+    )
   }
 };
