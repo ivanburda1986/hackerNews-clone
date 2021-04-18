@@ -9,7 +9,7 @@ const StoryMetadata = (props) => {
 
   return(
     <div className={classes.StoryDetails}>
-    <div><p>by</p><p>{props.by}</p></div>
+    <div><p>by</p><Link to={`/user?id=${props.by}`}>{props.by}</Link></div>
     <div><p>on</p><p>{getHumanDate(props.time)}</p></div>
     <div><p>with</p><Link to={`/post?id=${props.id}`}>{props.commentCount}</Link><p>comments</p></div>
   </div>

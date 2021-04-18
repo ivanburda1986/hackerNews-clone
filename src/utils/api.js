@@ -32,7 +32,7 @@ function fetchStoriesIds(type){
       }
     })
     .then((storiesIds)=>{
-      return storiesIds.slice(0,50);
+      return storiesIds.slice(0,10);
     })
     .catch((error)=>{
       console.log(error);
@@ -61,3 +61,23 @@ export async function fetchCommentedStory(id){
   }
   return {storyDetails: storyDetails, storyComments: comments};
 }
+
+//Fetch user
+export function getUserData(id){
+  const endpoint = `${BASE_URL}/user/${id}.json?print=pretty`;
+  return fetch (endpoint)
+  .then((response)=>{
+    if(response.status >= 200 && response.status <= 299){
+      return response.json();
+    } else {
+      throw Error (response.statusText);
+    }
+  })
+  .then((itemDetails)=>{
+      //return itemDetails;
+      return {id:itemDetails.id, about: itemDetails.about, created: itemDetails.created, submitted: itemDetails.submitted.slice(0,10) };
+  })
+  .catch((error)=>{
+    console.log(error);
+  });
+};
