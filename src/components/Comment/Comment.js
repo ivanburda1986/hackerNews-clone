@@ -1,17 +1,15 @@
 import React from 'react';
 
+import classes from './Comment.module.css';
+
 import StoryMetadata from '../StoryMetadata/StoryMetadata';
 
 const Comment = (props) =>{
-
-
   return(
-    <React.Fragment>
-      <StoryMetadata by={props.by} time={props.time} id={props.id} commentCount={props.commentCount}/>
-      <div>
-        <p>Comment text goes here</p>
-      </div>
-    </React.Fragment>
+    <div className={classes.Comment}>
+    <StoryMetadata by={props.by} time={props.time}/>
+        <p dangerouslySetInnerHTML={{__html: props.text}}></p>
+    </div>
   );
 };
 

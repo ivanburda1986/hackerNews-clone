@@ -11,49 +11,57 @@ import classes from './Comments.module.css';
 export default class Comments extends React.Component{
   state = {
     comments: [],
-    commentIds: [],
+    commentIds: this.props.commentIds,
     loading: false,
-    triggered: false,
+    commentsFetched: false,
   }
 
-  componentDidMount(){
-    this.setState({
-      commentIds: this.props.comments,
-    })
-  }
 
   fetchComments = (id) => {
-    this.setState({
-      loading: true,
-    });
-    
     getStoryDetails(id)
     .then((data)=>{
-
       this.setState({
-        comments: data,
+        comments: this.state.comments.concat(data),
         loading: false,
+        commentsFetched: true,
       })
     })
   };
 
   render(){
-    let myComment;
-    if(this.state.commentIds !== undefined && this.state.triggered === false){
-      myComment = this.state.commentIds[0];
-      this.fetchComments(myComment);
-      this.setState({
-        triggered: true,
-      })
-    }
 
-    if(this.state.loading){
+    
+    
+
+
+
+    if(!this.state.commentIds){
       return <Loading text="Loading"/>;
-    } else{
+    } 
+    if(this.state.commentsFetched === false){
+        this.state.commentIds.forEach(commentId=>this.fetchComments(commentId));
+    }
+    if(this.state.comments.length !==0){
+ 
+      let allcomments = [...this.state.comments];
+      allcomments = allcomments.map(comment=>(
+        <Comment
+          key={comment.id}
+          id={comment.id}
+          text={comment.text}
+          by={comment.by}
+          time={comment.time}
+        />
+      ));
+
+      console.log(allcomments);
       return(
-        <p>{myComment}</p>
+          <ul>
+            {allcomments}
+          </ul>
       )
     }
+    return(<p>ivan</p>);
   }
 }
 

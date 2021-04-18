@@ -19,6 +19,8 @@ const StoryMetadata = (props) => {
 StoryMetadata.propTypes = {
   by: PropTypes.string,
   time: PropTypes.number,
+  id: PropTypes.number,
+  commentCount: PropTypes.number
   //comments: PropTypes.array,
 }
 

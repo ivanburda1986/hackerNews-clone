@@ -43,7 +43,7 @@ export default class StandaloneStory extends React.Component{
         <h1 className={classes.Title}>{this.state.story.title}</h1>
         <StoryMetadata by={this.state.story.by} time={this.state.story.time} commentCount={this.state.story.descendants} id={this.state.story.id}/>
         <div className={classes.Text} dangerouslySetInnerHTML={{__html: this.state.story.text}}></div>
-        <Comments comments={this.state.story.kids}/>
+        <Comments commentIds={this.state.story.kids}/>
       </React.Fragment>
     );
   }
