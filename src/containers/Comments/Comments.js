@@ -39,7 +39,7 @@ export default class Comments extends React.Component{
       return <Loading text="Loading"/>;
     } 
     if(this.state.commentsFetched === false){
-        this.state.commentIds.forEach(commentId=>this.fetchComments(commentId));
+        this.state.commentIds.forEach(commentId=>{console.log(commentId);this.fetchComments(commentId)});
     }
     if(this.state.comments.length !==0){
  
@@ -54,7 +54,7 @@ export default class Comments extends React.Component{
         />
       ));
 
-      console.log(allcomments);
+      //console.log(allcomments);
       return(
           <ul>
             {allcomments}

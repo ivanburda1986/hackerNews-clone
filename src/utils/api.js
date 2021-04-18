@@ -7,7 +7,7 @@ export function getStoryDetails(id){
     if(response.status >= 200 && response.status <= 299){
       return response.json();
     } else {
-      console.log(response.status, response.statusText);
+      //console.log(response.status, response.statusText);
       throw Error (response.statusText);
     }
   })
@@ -27,7 +27,7 @@ function fetchStoriesIds(type){
       if(response.status >= 200 && response.status <= 299){
         return response.json();
       } else {
-        console.log(response.status, response.statusText);
+        //console.log(response.status, response.statusText);
         throw Error (response.statusText);
       }
     })
@@ -44,6 +44,6 @@ export async function fetchStories(type){
   //Create a standalone function that will filter the stories to make sure all of them have all attributes which I need further on
   let cleanedStories = await Promise.all(ids.map((item) => getStoryDetails(item)));
   cleanedStories = cleanedStories.filter((story)=>story!=null);
-  console.log(cleanedStories);
+  //console.log(cleanedStories);
   return cleanedStories;
 }
