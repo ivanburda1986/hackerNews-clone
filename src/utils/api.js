@@ -32,7 +32,7 @@ function fetchStoriesIds(type){
       }
     })
     .then((storiesIds)=>{
-      return storiesIds.slice(0,10);
+      return storiesIds.slice(0,50);
     })
     .catch((error)=>{
       console.log(error);
@@ -75,7 +75,7 @@ export function getUserData(id){
   })
   .then((itemDetails)=>{
       //return itemDetails;
-      return {id:itemDetails.id, about: itemDetails.about, created: itemDetails.created, submitted: itemDetails.submitted.slice(0,10) };
+      return {id:itemDetails.id, about: itemDetails.about, created: itemDetails.created, submitted: itemDetails.submitted.slice(0,50), karma: itemDetails.karma, about: itemDetails.about };
   })
   .catch((error)=>{
     console.log(error);
