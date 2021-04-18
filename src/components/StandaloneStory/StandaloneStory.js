@@ -1,17 +1,18 @@
 import React from 'react';
 import queryString from 'query-string';
 
-import {getStoryDetails} from '../../utils/api';
+import {fetchCommentedStory} from '../../utils/api';
 
 import classes from './StandaloneStory.module.css';
 
 import Loading from '../Loading/Loading';
 import StoryMetadata from '../StoryMetadata/StoryMetadata';
-import Comments from '../../containers/Comments/Comments';
+import Comment from '../Comment/Comment';
 
 export default class StandaloneStory extends React.Component{
   state = {
     story: [],
+    comments: [],
     loading: false,
   }
 
@@ -24,10 +25,11 @@ export default class StandaloneStory extends React.Component{
     this.setState({
       loading: true,
     });
-    getStoryDetails(id)
+    fetchCommentedStory(id)
       .then((data)=>{
         this.setState({
-          story: data,
+          story: data.storyDetails,
+          comments: data.storyComments,
           loading: false,
         })
       })
@@ -36,14 +38,21 @@ export default class StandaloneStory extends React.Component{
   render(){
     if(this.state.loading){
       return <Loading text="Loading"/>;
-    } else 
-    
+    }    
     return(
       <React.Fragment>
         <h1 className={classes.Title}>{this.state.story.title}</h1>
         <StoryMetadata by={this.state.story.by} time={this.state.story.time} commentCount={this.state.story.kids ? this.state.story.kids.length : 0} id={this.state.story.id}/>
         <div className={classes.Text} dangerouslySetInnerHTML={{__html: this.state.story.text}}></div>
-        <Comments commentIds={new Set(this.state.story.kids)}/>
+        <ul>
+          {this.state.comments.map((comment)=><Comment 
+            key={comment.id}
+            id={comment.id}
+            text={comment.text}
+            by={comment.by}
+            time={comment.time}
+          />)}
+        </ul>
       </React.Fragment>
     );
   }

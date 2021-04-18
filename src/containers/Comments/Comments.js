@@ -1,4 +1,5 @@
 import React from 'react';
+import queryString from 'query-string';
 
 import {getStoryDetails} from '../../utils/api';
 
@@ -16,33 +17,17 @@ export default class Comments extends React.Component{
     commentsFetched: false,
   }
 
+  componentDidMount(){
 
-  fetchComments = (id) => {
-    getStoryDetails(id)
-    .then((data)=>{
-      this.setState({
-        comments: this.state.comments.concat(data),
-        loading: false,
-        commentsFetched: true,
-      })
-    })
-  };
+  }
 
   render(){
-
-    
-    
-
-
-
+    //Loading
     if(!this.state.commentIds){
       return <Loading text="Loading"/>;
-    } 
-    if(this.state.commentsFetched === false){
-        this.state.commentIds.forEach(commentId=>{console.log(commentId);this.fetchComments(commentId)});
-    }
+    };
+    //Displays the comments
     if(this.state.comments.length !==0){
- 
       let allcomments = [...this.state.comments];
       allcomments = allcomments.map(comment=>(
         <Comment
@@ -53,15 +38,14 @@ export default class Comments extends React.Component{
           time={comment.time}
         />
       ));
-
-      //console.log(allcomments);
       return(
           <ul>
             {allcomments}
           </ul>
       )
     }
-    return(<p>ivan</p>);
+    //No comments available
+    return(<p>No comments available</p>);
   }
 }
 
