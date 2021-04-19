@@ -94,12 +94,15 @@ export default class User extends React.Component{
 
 
   render(){
+    console.log(this.state.storyDetails.length);
     const content = this.storiesDisplay();
     const userContent = this.userDisplay();
     return(
 
       <React.Fragment>
         {userContent}
+        <h1>Posts</h1>
+        {this.state.storyDetails.length === 0 ? <p>No posts yet</p>:null }
       <ul>
         {content}
       </ul>

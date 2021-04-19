@@ -8,14 +8,13 @@ import {getHumanDate} from '../../utils/convertors';
 const StoryMetadata = (props) => {
   let by = <Link to={"/user?id="+props.by}>{props.by}</Link>;
   let time = getHumanDate(props.time);
-  let comments = <Link to={`/post?id=${props.id}`}>{props.commentCount}</Link>;
+  let wordWith = typeof props.commentCount === "number" ? "with":null;
+  let comments = typeof props.commentCount === "number" ? <Link to={`/post?id=${props.id}`}>{props.commentCount}</Link> : null;
+  let wordComments = typeof props.commentCount === "number" ? "comments":null;
+
   return(
   <div className={classes.StoryDetails}>
-    
-    <div>{"by" + by + "on" + time + "with" + comments}</div>
-   
-
-
+    <div>by<span/>{by}<span/>on<span/>{time}<span/>{wordWith}<span/>{comments}<span/>{wordComments}</div>
   </div>
   );
 }
