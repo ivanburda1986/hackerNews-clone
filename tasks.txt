@@ -1,19 +1,3 @@
-Creating a hackernews clone
---------------------------------
-Fetch IDs of top news 
-Fetch details of first 50 top news 
-Display the first 50 top news
-
----------------------------------
-Fetch IDs of general news 
-Fetch details of first 50 general news 
-Display the first 50 general news
-
-
-
-
-
-
 Curriculum 
 https://github.com/uidotdev/react-course-curriculum
 
