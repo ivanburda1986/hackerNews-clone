@@ -1,3 +1,9 @@
+1) Refactor the code in order to improve quality 
+2) Implement the dark/ligh mode option
+3) Implement the endless scrolling to load more posts
+4) Fix any bugs I discover on the way
+
+
 Curriculum 
 https://github.com/uidotdev/react-course-curriculum
 
@@ -6,8 +12,6 @@ https://github.com/HackerNews/API
 
 Finished project
 https://hn.ui.dev/
-
-
 
 //Advice
 https://learnwithparam.com/blog/how-to-handle-fetch-errors/

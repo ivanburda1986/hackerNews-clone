@@ -4,6 +4,8 @@ import queryString from 'query-string';
 import Loading from '../Loading/Loading';
 import Story from '../Story/Story';
 
+import classes from './User.module.css';
+
 import {getHumanDate} from '../../utils/convertors';
 
 import {getUserData, getItemDetails} from '../../utils/api';
@@ -82,8 +84,8 @@ export default class User extends React.Component{
         return <Loading text="Loading"/>
       } else {
         return(
-          <div>
-            <h1>{this.state.userDetails.id}</h1>
+          <div className={classes.UserDisplay}>
+            <h1 className={classes.Header}>{this.state.userDetails.id}</h1>
             <p>{`Joined on ${getHumanDate(this.state.userDetails.created)}, has karma ${this.state.userDetails.karma}`}</p>
             <p dangerouslySetInnerHTML={{__html: this.state.userDetails.about}}></p>
           </div>
@@ -101,7 +103,7 @@ export default class User extends React.Component{
 
       <React.Fragment>
         {userContent}
-        <h1>Posts</h1>
+        <h1 className={classes.Header}>Posts</h1>
         {this.state.storyDetails.length === 0 ? <p>No posts yet</p>:null }
       <ul>
         {content}
