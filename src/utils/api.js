@@ -15,7 +15,7 @@ export async function fetchStories(type){
 
 //Fetch Story including its all comments
 export async function fetchCommentedStory(id){
-  const storyDetails = getItemDetails(id);
+  const storyDetails = await getItemDetails(id);
   let commentIds = [];
   let comments = [];
   if(storyDetails.kids !== undefined){
@@ -54,7 +54,8 @@ export async function getItemDetails(id){
   if(!response.ok){
     throw new Error (`HTTP error! status: ${response.status}`);
   }
-  return await response.json();
+  let itemDetails = await response.json()
+  return itemDetails;
 };
 
 //Fetch user
