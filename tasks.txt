@@ -1,7 +1,8 @@
-1) Refactor the code in order to improve quality 
-2) Implement the dark/ligh mode option
-3) Implement the endless scrolling to load more posts
-4) Fix any bugs I discover on the way
+Refactor the code in order to improve quality 
+UI message if there is an error
+Implement the endless scrolling to load more posts
+Implement the dark/ligh mode option
+Fix any bugs I discover on the way
 
 
 Curriculum 

@@ -1,11 +1,9 @@
 import React from 'react';
 
-
-
-import Loading from '../../components/Loading/Loading';
-import Story from '../../components/Story/Story';
-
 import {fetchStories} from '../../utils/api';
+
+import Story from '../../components/Story/Story';
+import Loading from '../../components/Loading/Loading';
 
 export default class TopStories extends React.Component{
   state = {

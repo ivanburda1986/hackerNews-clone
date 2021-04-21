@@ -11,7 +11,6 @@ import NewStories from './containers/NewStories/NewStories';
 import StandaloneStory from './components/StandaloneStory/StandaloneStory';
 import User from './components/User/User';
 
-
 class App extends React.Component{
   render(){
 
@@ -24,7 +23,7 @@ class App extends React.Component{
             <Switch>
                 <Route path="/" exact component={TopStories}/>
                 <Route path="/new" exact component={NewStories}/>
-                <Route path="/post" component={StandaloneStory}/>
+                <Route path="/story" component={StandaloneStory}/>
                 <Route path="/user" component={User}/>
                 {/* This is a 404 fallback which redirects to the main route */}
                 <Redirect to="/"/>

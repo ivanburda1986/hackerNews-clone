@@ -10,7 +10,7 @@ html, body, #root{
 
 body{
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
-  background-color: white;
+  background: #fff;
 }
 
 ul{
@@ -22,6 +22,6 @@ li{
 }
 
 .wrapper{
-  margin: 0 auto;
-  width: 90vw;
+  margin: 5vh auto;
+  width: 85vw;
 }

@@ -9,7 +9,7 @@ const StoryMetadata = (props) => {
   let by = <Link to={"/user?id="+props.by}>{props.by}</Link>;
   let time = getHumanDate(props.time);
   let wordWith = typeof props.commentCount === "number" ? "with":null;
-  let comments = typeof props.commentCount === "number" ? <Link to={`/post?id=${props.id}`}>{props.commentCount}</Link> : null;
+  let comments = typeof props.commentCount === "number" ? <Link to={`/story?id=${props.id}`}>{props.commentCount}</Link> : null;
   let wordComments = typeof props.commentCount === "number" ? "comments":null;
 
   return(
@@ -24,13 +24,6 @@ StoryMetadata.propTypes = {
   time: PropTypes.number,
   id: PropTypes.number,
   commentCount: PropTypes.number
-  //comments: PropTypes.array,
 }
 
 export default StoryMetadata;
-
-
-
-{/* <div><p>by</p><Link to={`/user?id=${props.by}`}>{props.by}</Link></div>
-<div><p>on</p><p>{getHumanDate(props.time)}</p></div>
-<div><p>with</p><Link to={`/post?id=${props.id}`}>{props.commentCount}</Link><p>comments</p></div> */}
