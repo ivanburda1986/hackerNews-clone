@@ -96,7 +96,6 @@ export default class User extends React.Component{
 
 
   render(){
-    console.log(this.state.storyDetails.length);
     const content = this.storiesDisplay();
     const userContent = this.userDisplay();
     return(

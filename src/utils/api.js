@@ -1,3 +1,7 @@
+// https://developer.mozilla.org/en-US/docs/Web/API/Response
+// https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0'
 
 //Fetch Top/New stories including their details
@@ -11,7 +15,7 @@ export async function fetchStories(type){
 
 //Fetch Story including its all comments
 export async function fetchCommentedStory(id){
-  const storyDetails = await getItemDetails(id);
+  const storyDetails = getItemDetails(id);
   let commentIds = [];
   let comments = [];
   if(storyDetails.kids !== undefined){
@@ -44,48 +48,21 @@ function fetchStoriesIds(type){
     });
 };
 
-
-
 //Get details of an item specified by the argument value
-export function getItemDetails(id){
-  return fetch (`${BASE_URL}/item/${id}.json?print=pretty`)
-  .then((response)=>{
-    if(response.status >= 200 && response.status <= 299){
-      return response.json();
-    } else {
-      throw Error (response.statusText);
-    }
-  })
-  .then((itemDetails)=>{
-      return itemDetails;
-  })
-  .catch((error)=>{
-    console.log(error);
-  });
+export async function getItemDetails(id){
+  let response = await fetch (`${BASE_URL}/item/${id}.json?print=pretty`);
+  if(!response.ok){
+    throw new Error (`HTTP error! status: ${response.status}`);
+  }
+  return await response.json();
 };
 
-
-
-
-
-
-
 //Fetch user
-export function getUserData(id){
-  const endpoint = `${BASE_URL}/user/${id}.json?print=pretty`;
-  return fetch (endpoint)
-  .then((response)=>{
-    if(response.status >= 200 && response.status <= 299){
-      return response.json();
-    } else {
-      throw Error (response.statusText);
-    }
-  })
-  .then((itemDetails)=>{
-      //return itemDetails;
-      return {id:itemDetails.id, about: itemDetails.about, created: itemDetails.created, submitted: itemDetails.submitted.slice(0,50), karma: itemDetails.karma, about: itemDetails.about };
-  })
-  .catch((error)=>{
-    console.log(error);
-  });
+export async function getUserData(id){
+  let response = await fetch (`${BASE_URL}/user/${id}.json?print=pretty`);
+  if(!response.ok){
+    throw new Error (`HTTP error! status: ${response.status}`);
+  }
+  let userDetails = await response.json();
+  return {id:userDetails.id, about: userDetails.about, created: userDetails.created, submitted: userDetails.submitted.slice(0,50), karma: userDetails.karma, about: userDetails.about };
 };
