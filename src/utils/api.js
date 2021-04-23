@@ -27,43 +27,32 @@ export async function fetchCommentedStory(id){
   return {storyDetails: storyDetails, storyComments: comments};
 };
 
-
 //Fetch IDs of Top/New stories based on the provided argument value
-function fetchStoriesIds(type){
-  const endpoint = `${BASE_URL}/${type}stories.json?print=pretty`;
-  return fetch (endpoint)
-    .then((response)=>{
-      if(response.status >= 200 && response.status <= 299){
-        return response.json();
-      } else {
-        //console.log(response.status, response.statusText);
-        throw Error (response.statusText);
-      }
-    })
-    .then((storiesIds)=>{
-      return storiesIds.slice(0,50);
-    })
-    .catch((error)=>{
-      console.log(error);
-    });
+async function fetchStoriesIds(type){
+  const response = await fetch (`${BASE_URL}/${type}stories.json?print=pretty`);
+  if(!response.ok){
+    throw new Error (`HTTP error! status: ${response.status}`);
+  };
+  const storiesIds = await response.json();
+  return storiesIds.slice(0,50);
 };
 
 //Get details of an item specified by the argument value
 export async function getItemDetails(id){
-  let response = await fetch (`${BASE_URL}/item/${id}.json?print=pretty`);
+  const response = await fetch (`${BASE_URL}/item/${id}.json?print=pretty`);
   if(!response.ok){
     throw new Error (`HTTP error! status: ${response.status}`);
   }
-  let itemDetails = await response.json()
+  const itemDetails = await response.json()
   return itemDetails;
 };
 
 //Fetch user
 export async function getUserData(id){
-  let response = await fetch (`${BASE_URL}/user/${id}.json?print=pretty`);
+  const response = await fetch (`${BASE_URL}/user/${id}.json?print=pretty`);
   if(!response.ok){
     throw new Error (`HTTP error! status: ${response.status}`);
   }
-  let userDetails = await response.json();
+  const userDetails = await response.json();
   return {id:userDetails.id, about: userDetails.about, created: userDetails.created, submitted: userDetails.submitted.slice(0,50), karma: userDetails.karma, about: userDetails.about };
 };

@@ -17,3 +17,7 @@ https://hn.ui.dev/
 //Advice
 https://learnwithparam.com/blog/how-to-handle-fetch-errors/
 https://javascript.info/promise-chaining
+
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
