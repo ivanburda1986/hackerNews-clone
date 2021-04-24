@@ -7,7 +7,6 @@ const BASE_URL = 'https://hacker-news.firebaseio.com/v0'
 //Fetch Top/New stories including their details
 export async function fetchStories(type){
   const ids = await fetchStoriesIds(type);
-  //Create a standalone function that will filter the stories to make sure all of them have all attributes which I need further on
   let cleanedStories = await Promise.all(ids.map((item) => getItemDetails(item)));
   cleanedStories = cleanedStories.filter((story)=>story!=null);
   return cleanedStories;
@@ -19,9 +18,8 @@ export async function fetchCommentedStory(id){
   let commentIds = [];
   let comments = [];
   if(storyDetails.kids !== undefined){
-    commentIds = await Promise.all(storyDetails.kids.map((kid) => kid));
-    comments = await Promise.all(commentIds.map((id)=>getItemDetails(id)))
-    //Removing comments which have been deleted
+    commentIds =  storyDetails.kids.map((kid) => kid);
+    comments = await Promise.all(commentIds.map((id)=>getItemDetails(id)));
     comments = comments.filter((story)=>!story.deleted);
   }
   return {storyDetails: storyDetails, storyComments: comments};

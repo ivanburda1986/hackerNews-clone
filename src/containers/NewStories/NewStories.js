@@ -1,5 +1,4 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
 
 import Loading from '../../components/Loading/Loading';
 import Story from '../../components/Story/Story';

@@ -33,16 +33,22 @@ export default class StandaloneStory extends React.Component{
           loading: false,
         })
       })
-  }
+      .catch((error)=>console.log(error));
+  };
 
   render(){
     if(this.state.loading){
       return <Loading text="Loading"/>;
-    }    
+    }
     return(
       <React.Fragment>
         <h1 className={classes.Title}>{this.state.story.title}</h1>
-        <StoryMetadata by={this.state.story.by} time={this.state.story.time} commentCount={this.state.story.kids ? this.state.story.kids.length : 0} id={this.state.story.id}/>
+        <StoryMetadata 
+          by={this.state.story.by} 
+          time={this.state.story.time} 
+          commentCount={this.state.story.kids ? this.state.story.kids.length : 0} 
+          id={this.state.story.id}
+        />
         <div className={classes.Text} dangerouslySetInnerHTML={{__html: this.state.story.text}}></div>
         <ul>
           {this.state.comments.map((comment)=><Comment 
@@ -56,5 +62,4 @@ export default class StandaloneStory extends React.Component{
       </React.Fragment>
     );
   }
-}
-
+};

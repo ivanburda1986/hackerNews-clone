@@ -1,8 +1,8 @@
 import React from 'react';
-
-import classes from './Comment.module.css';
+import PropTypes from 'prop-types';
 
 import StoryMetadata from '../StoryMetadata/StoryMetadata';
+import classes from './Comment.module.css';
 
 const Comment = (props) =>{
   return(
@@ -13,5 +13,10 @@ const Comment = (props) =>{
   );
 };
 
-
 export default Comment;
+
+Comment.propTypes = {
+  by: PropTypes.string,
+  time: PropTypes.number,
+  text: PropTypes.string,
+};

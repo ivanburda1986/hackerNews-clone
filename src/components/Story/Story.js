@@ -9,12 +9,16 @@ import classes from './Story.module.css';
 
 
 const Story = (props) => {
-
   return(
    <React.Fragment>
     <li className={classes.Story}>
      <Title data={{id: props.id, title: props.title, url: props.url}}/>
-     <StoryMetadata by={props.by} time={props.time} commentCount={props.commentCount} id={props.id}/>
+     <StoryMetadata 
+      by={props.by} 
+      time={props.time} 
+      commentCount={props.commentCount} 
+      id={props.id}
+     />
    </li>
    </React.Fragment>
   );  

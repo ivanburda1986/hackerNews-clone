@@ -5,7 +5,7 @@ import classes from './Loading.module.css';
 
 export default class Loading extends React.Component{
   state = {
-    content: this.props.text
+    content: this.props.text,
   }
 
   componentDidMount () {

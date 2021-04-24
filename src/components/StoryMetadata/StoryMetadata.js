@@ -17,13 +17,13 @@ const StoryMetadata = (props) => {
     <div>by<span/>{by}<span/>on<span/>{time}<span/>{wordWith}<span/>{comments}<span/>{wordComments}</div>
   </div>
   );
-}
+};
 
 StoryMetadata.propTypes = {
   by: PropTypes.string,
   time: PropTypes.number,
   id: PropTypes.number,
   commentCount: PropTypes.number
-}
+};
 
 export default StoryMetadata;

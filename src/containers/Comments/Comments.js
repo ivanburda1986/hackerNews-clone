@@ -1,13 +1,8 @@
 import React from 'react';
-import queryString from 'query-string';
-
-import {getStoryDetails} from '../../utils/api';
+import PropTypes from 'prop-types';
 
 import Loading from '../../components/Loading/Loading';
 import Comment from '../../components/Comment/Comment';
-
-import classes from './Comments.module.css';
-
 
 export default class Comments extends React.Component{
   state = {
@@ -26,6 +21,7 @@ export default class Comments extends React.Component{
     if(!this.state.commentIds){
       return <Loading text="Loading"/>;
     };
+    
     //Displays the comments
     if(this.state.comments.length !==0){
       let allcomments = [...this.state.comments];
@@ -47,5 +43,9 @@ export default class Comments extends React.Component{
     //No comments available
     return(<p>No comments available</p>);
   }
-}
+};
+
+Comments.propTypes = {
+  commentIds: PropTypes.array.isRequired,
+};
 

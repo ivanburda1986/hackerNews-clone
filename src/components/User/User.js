@@ -7,7 +7,6 @@ import Story from '../Story/Story';
 import classes from './User.module.css';
 
 import {getHumanDate} from '../../utils/convertors';
-
 import {getUserData, getItemDetails} from '../../utils/api';
 
 
@@ -16,7 +15,7 @@ export default class User extends React.Component{
     userDetails: [],
     storyDetails: [],
     userLoading: false,
-    storysLoading: false,
+    storiesLoading: false,
   }
 
   componentDidMount(){
@@ -36,32 +35,33 @@ export default class User extends React.Component{
         })
       })
       .then(()=>{this.getUsersStories(this.state.userDetails.submitted);})
+      .catch((error)=>console.log(error));
   };
 
   getUsersStories = (ids) => {
     this.setState({
-      storysLoading: true,
+      storiesLoading: true,
     });
     ids.forEach((id)=>{
       getItemDetails(id)
       .then((data)=>{
-        //Make sure that only stories are passed on
        if (data.type === "story"){
         this.setState({
           storyDetails: this.state.storyDetails.concat(data),
-          storysLoading: false,
+          storiesLoading: false,
         })
        } else{
         this.setState({
-          storysLoading: false,
+          storiesLoading: false,
         })
        }
       })
+      .catch((error)=>console.log(error));
     })
   };
 
     storiesDisplay = () => {
-      if(this.state.storysLoading){
+      if(this.state.storiesLoading){
         return <Loading text="Loading"/>;
       } else {
         return (
@@ -91,21 +91,18 @@ export default class User extends React.Component{
           </div>
         );
       }
-    }
-
-
+    };
 
   render(){
-    const content = this.storiesDisplay();
     const userContent = this.userDisplay();
+    const storiesContent = this.storiesDisplay();
     return(
-
       <React.Fragment>
         {userContent}
         <h1 className={classes.Header}>Posts</h1>
         {this.state.storyDetails.length === 0 ? <p>No posts yet</p>:null }
       <ul>
-        {content}
+        {storiesContent}
       </ul>
       </React.Fragment>
     )
