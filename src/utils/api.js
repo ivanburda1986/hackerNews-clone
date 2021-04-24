@@ -1,7 +1,3 @@
-// https://developer.mozilla.org/en-US/docs/Web/API/Response
-// https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
-
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0'
 
 //Fetch Top/New stories including their details
