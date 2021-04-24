@@ -6,8 +6,7 @@ import './index.module.css';
 import classes from './index.module.css';
 
 import Navigation from './components/Navigation/Navigation';
-import TopStories from './containers/TopStories/TopStories';
-import NewStories from './containers/NewStories/NewStories';
+import Stories from './containers/StorieFeed/StoriesFeed';
 import StandaloneStory from './components/StandaloneStory/StandaloneStory';
 import User from './components/User/User';
 
@@ -21,8 +20,8 @@ class App extends React.Component{
           <div className={classes.wrapper}>
             <Navigation/>
             <Switch>
-                <Route path="/" exact component={TopStories}/>
-                <Route path="/new" exact component={NewStories}/>
+                <Route path="/" exact render={(props)=><Stories storyType="top"/>}/>
+                <Route path="/new" exact render={(props)=><Stories storyType="new"/>}/>
                 <Route path="/story" component={StandaloneStory}/>
                 <Route path="/user" component={User}/>
                 {/* This is a 404 fallback which redirects to the main route */}

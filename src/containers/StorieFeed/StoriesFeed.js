@@ -5,32 +5,47 @@ import Story from '../../components/Story/Story';
 
 import {fetchStories} from '../../utils/api';
 
-export default class NewStories extends React.Component{
+export default class StoriesFeed extends React.Component{
   state = {
-    newStories: [],
+    storyType: this.props.storyType,
+    stories: [],
     loading: false,
   }
 
   componentDidMount(){
-    this.fetchNewStories();
+    this.fetchStoriesFeed();
   }
 
-  fetchNewStories = () => {
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.storyType!==this.state.storyType){
+      this.fetchStoriesFeed();
+    }
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.storyType!==prevState.storyType){
+      return {storyType: nextProps.storyType};
+    }
+    else return null;
+  };
+
+  fetchStoriesFeed = () => {
     this.setState({
       loading: true,
     });
 
-    fetchStories("new")
+    fetchStories(this.state.storyType)
       .then((data)=>{
         this.setState({
-          newStories: data,
+          stories: data,
           loading: false,
         })
       })
   };
 
   render(){
-    let stories = [...this.state.newStories];
+    console.log("Storiesfeed", this.props.storyType);
+    let stories = [...this.state.stories];
     stories = stories.map(story=>(
       <Story
         key={story.id}
