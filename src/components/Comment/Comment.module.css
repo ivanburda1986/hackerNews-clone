@@ -1,5 +1,12 @@
-.Comment{
-  background-color: rgb(196, 199, 202);
+.Comment-light{
+  background-color: rgb(199, 199, 199);
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.Comment-dark{
+  background-color: rgb(99, 98, 98);
   padding: 0.75rem 1.25rem;
   border-radius: 10px;
   margin-bottom: 1rem;

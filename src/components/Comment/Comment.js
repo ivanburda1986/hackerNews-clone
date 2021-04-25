@@ -4,12 +4,18 @@ import PropTypes from 'prop-types';
 import StoryMetadata from '../StoryMetadata/StoryMetadata';
 import classes from './Comment.module.css';
 
+import {ThemeConsumer} from '../../contexts/theme';
+
 const Comment = (props) =>{
   return(
-    <div className={classes.Comment}>
-    <StoryMetadata by={props.by} time={props.time}/>
-        <p dangerouslySetInnerHTML={{__html: props.text}}></p>
-    </div>
+    <ThemeConsumer>
+      {({theme})=>(
+        <div className={classes[`Comment-${theme}`]}>
+        <StoryMetadata by={props.by} time={props.time}/>
+            <p dangerouslySetInnerHTML={{__html: props.text}}></p>
+        </div>
+      )}
+    </ThemeConsumer>
   );
 };
 
