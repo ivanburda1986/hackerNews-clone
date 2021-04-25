@@ -17,13 +17,14 @@ const StoryMetadata = (props) => {
   <ThemeConsumer>
     {({theme})=>(
         <div className={classes.StoryDetails}>
-        <div>
-          by<span/>{<Link to={"/user?id="+props.by}><span className={classesGlobal[`link-${theme}`]}>{props.by}</span></Link>}<span/>
-          on<span/>{time}<span/>
-          {wordWith}<span/>
-          {typeof props.commentCount === "number" ? <Link to={`/story?id=${props.id}`}><span className={classesGlobal[`link-${theme}`]}>{props.commentCount}</span></Link> : null}<span/>
-          {wordComments}</div>
-      </div>
+          <div className={classesGlobal[`text-${theme}`]}>
+            by<span/>{<Link to={"/user?id="+props.by}><span className={classesGlobal[`link-${theme}`]}>{props.by}</span></Link>}<span/>
+            on<span/>{time}<span/>
+            {wordWith}<span/>
+            {typeof props.commentCount === "number" ? <Link to={`/story?id=${props.id}`}><span className={classesGlobal[`link-${theme}`]}>{props.commentCount}</span></Link> : null}<span/>
+            {wordComments}
+          </div>
+        </div>
     )
     }
   </ThemeConsumer>

@@ -26,3 +26,11 @@
     text-decoration: underline;
     text-decoration-color: rgb(92, 128, 194);
   }
+
+  .text-light{
+    color:rgb(91, 94, 94);
+  }
+
+  .text-dark{
+    color: #000;
+  }
