@@ -6,28 +6,35 @@ import {ThemeProvider} from './contexts/theme';
 
 import './index.module.css';
 import classes from './index.module.css';
+import classesGlobal from './global.module.css';
 
 import Navigation from './components/Navigation/Navigation';
 import Stories from './containers/StoriesFeed/StoriesFeed';
 import StandaloneStory from './components/StandaloneStory/StandaloneStory';
 import User from './components/User/User';
 
+let darkc = '#343434';
+let lightc = '#ffffff';
+
 class App extends React.Component{
   state = {
-    theme: 'dark',
+    theme: 'light',
     toggleTheme: () => {
       this.setState(({theme})=>({
         theme: theme === 'light' ? 'dark' : 'light'
       }));
+      document.body.style = `background-color: ${this.state.theme === 'light' ? darkc : lightc}`;
     }
   }
+
+
   render(){
     return(
       <React.Fragment>
         <React.Suspense>
           <ThemeProvider value = {this.state}>
             <BrowserRouter>
-            <div className={classes[this.state.theme]}>
+            <div className={classesGlobal[`bg-${this.state.theme}`]}>
               <div className={classes.wrapper}>
                 <Navigation/>
                 <Switch>

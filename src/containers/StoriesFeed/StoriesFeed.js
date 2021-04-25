@@ -2,7 +2,6 @@ import React from 'react';
 
 import Loading from '../../components/Loading/Loading';
 import Story from '../../components/Story/Story';
-import {ThemeConsumer} from '../../contexts/theme';
 
 import {fetchStories} from '../../utils/api';
 
@@ -69,14 +68,9 @@ export default class StoriesFeed extends React.Component{
 
     return(
       <React.Fragment>
-        <ThemeConsumer>
-          {({theme, toggleTheme})=>(
-            <ul>
-              {stories}
-            </ul>
-          )
-          }
-        </ThemeConsumer>
+        <ul>
+          {stories}
+        </ul>
       </React.Fragment>
     );
     
