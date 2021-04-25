@@ -2,6 +2,7 @@ import React from 'react';
 
 import Loading from '../../components/Loading/Loading';
 import Story from '../../components/Story/Story';
+import {ThemeConsumer} from '../../contexts/theme';
 
 import {fetchStories} from '../../utils/api';
 
@@ -44,7 +45,6 @@ export default class StoriesFeed extends React.Component{
   };
 
   render(){
-    console.log("Storiesfeed", this.props.storyType);
     let stories = [...this.state.stories];
     stories = stories.map(story=>(
       <Story
@@ -69,9 +69,14 @@ export default class StoriesFeed extends React.Component{
 
     return(
       <React.Fragment>
-        <ul>
-          {stories}
-        </ul>
+        <ThemeConsumer>
+          {({theme, toggleTheme})=>(
+            <ul>
+              {stories}
+            </ul>
+          )
+          }
+        </ThemeConsumer>
       </React.Fragment>
     );
     

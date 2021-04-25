@@ -8,36 +8,37 @@ import './index.module.css';
 import classes from './index.module.css';
 
 import Navigation from './components/Navigation/Navigation';
-import Stories from './containers/StorieFeed/StoriesFeed';
+import Stories from './containers/StoriesFeed/StoriesFeed';
 import StandaloneStory from './components/StandaloneStory/StandaloneStory';
 import User from './components/User/User';
 
 class App extends React.Component{
   state = {
-    theme: 'light',
+    theme: 'dark',
     toggleTheme: () => {
       this.setState(({theme})=>({
         theme: theme === 'light' ? 'dark' : 'light'
-      }))
+      }));
     }
   }
   render(){
-
     return(
       <React.Fragment>
         <React.Suspense>
           <ThemeProvider value = {this.state}>
             <BrowserRouter>
-            <div className={classes.wrapper}>
-              <Navigation/>
-              <Switch>
-                  <Route path="/" exact render={(props)=><Stories storyType="top"/>}/>
-                  <Route path="/new" exact render={(props)=><Stories storyType="new"/>}/>
-                  <Route path="/story" component={StandaloneStory}/>
-                  <Route path="/user" component={User}/>
-                  {/* This is a 404 fallback which redirects to the main route */}
-                  <Redirect to="/"/>
-              </Switch>
+            <div className={classes[this.state.theme]}>
+              <div className={classes.wrapper}>
+                <Navigation/>
+                <Switch>
+                    <Route path="/" exact render={(props)=><Stories storyType="top"/>}/>
+                    <Route path="/new" exact render={(props)=><Stories storyType="new"/>}/>
+                    <Route path="/story" component={StandaloneStory}/>
+                    <Route path="/user" component={User}/>
+                    {/* This is a 404 fallback which redirects to the main route */}
+                    <Redirect to="/"/>
+                </Switch>
+              </div>
             </div>
             </BrowserRouter>
           </ThemeProvider>
