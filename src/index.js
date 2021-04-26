@@ -8,13 +8,17 @@ import './index.module.css';
 import classes from './index.module.css';
 import classesGlobal from './global.module.css';
 
+import Loading from './components/Loading/Loading';
 import Navigation from './components/Navigation/Navigation';
-import Stories from './containers/StoriesFeed/StoriesFeed';
-import StandaloneStory from './components/StandaloneStory/StandaloneStory';
-import User from './components/User/User';
 
+/* Background colors */
 const darkBackgroundColor = '#343434';
 const lightBackgroundColor = '#ffffff';
+
+/* Lazy loading */
+const Stories = React.lazy(()=>import('./containers/StoriesFeed/StoriesFeed'));
+const StandaloneStory = React.lazy(()=>import('./components/StandaloneStory/StandaloneStory'));
+const User = React.lazy(()=>import('./components/User/User'));
 
 class App extends React.Component{
   state = {
@@ -30,7 +34,7 @@ class App extends React.Component{
   render(){
     return(
       <React.Fragment>
-        <React.Suspense>
+        <React.Suspense fallback={<Loading />}> {/* React.Suspense including fallback is needed in order to support the lazy loading */}
           <ThemeProvider value = {this.state}>
             <BrowserRouter>
             <div className={classesGlobal[`bg-${this.state.theme}`]}>
