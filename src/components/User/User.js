@@ -67,13 +67,13 @@ export default class User extends React.Component{
         return (
           this.state.storyDetails.map((story)=>
           <Story 
-          key={story.id} 
-          id={story.id} 
-          title={story.title} 
-          url={story.url} 
-          by={story.by} 
-          time={story.time} 
-          commentCount={story.kids ? story.kids.length : 0}
+            key={story.id} 
+            id={story.id} 
+            title={story.title} 
+            url={story.url} 
+            by={story.by} 
+            time={story.time} 
+            commentCount={story.kids ? story.kids.length : 0}
           />)
         );
       }

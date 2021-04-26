@@ -12,10 +12,6 @@ export default class Comments extends React.Component{
     commentsFetched: false,
   }
 
-  componentDidMount(){
-
-  }
-
   render(){
     //Loading
     if(!this.state.commentIds){

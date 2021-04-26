@@ -13,8 +13,8 @@ import Stories from './containers/StoriesFeed/StoriesFeed';
 import StandaloneStory from './components/StandaloneStory/StandaloneStory';
 import User from './components/User/User';
 
-let darkc = '#343434';
-let lightc = '#ffffff';
+const darkBackgroundColor = '#343434';
+const lightBackgroundColor = '#ffffff';
 
 class App extends React.Component{
   state = {
@@ -23,10 +23,9 @@ class App extends React.Component{
       this.setState(({theme})=>({
         theme: theme === 'light' ? 'dark' : 'light'
       }));
-      document.body.style = `background-color: ${this.state.theme === 'light' ? darkc : lightc}`;
+      document.body.style = `background-color: ${this.state.theme === 'light' ? darkBackgroundColor : lightBackgroundColor}`;
     }
   }
-
 
   render(){
     return(
