@@ -34,3 +34,12 @@
   .text-dark{
     color: rgb(204, 197, 197);
   }
+
+  .navlinkInactiveDark{
+    color: rgb(121, 121, 121);
+  }
+
+  .navlinkInactiveLight{
+    color: rgb(6, 7, 7);
+  }
+
