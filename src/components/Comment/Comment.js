@@ -6,16 +6,14 @@ import classes from './Comment.module.css';
 
 import {ThemeConsumer} from '../../contexts/theme';
 
+
 const Comment = (props) =>{
+  const {theme} = React.useContext(ThemeConsumer);
   return(
-    <ThemeConsumer>
-      {({theme})=>(
         <div className={classes[`Comment-${theme}`]}>
         <StoryMetadata by={props.by} time={props.time}/>
             <p dangerouslySetInnerHTML={{__html: props.text}}></p>
         </div>
-      )}
-    </ThemeConsumer>
   );
 };
 

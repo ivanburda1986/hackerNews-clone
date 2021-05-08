@@ -10,9 +10,9 @@ const Navigation = (props) =>{
     return [classes.Link, theme === "dark" ? classesGlobal.navlinkInactiveDark : classesGlobal.navlinkInactiveLight].join(" ");
   };
 
+  const {theme, toggleTheme} = React.useContext(ThemeConsumer);
+
   return (
-    <ThemeConsumer>
-      {({theme, toggleTheme})=>(
         <nav className={classes.Navigation}>
         <ul>
           <li><NavLink to="/" exact activeClassName={classes.Active} className={getLinkClasses(theme)}>Top</NavLink></li>
@@ -20,8 +20,6 @@ const Navigation = (props) =>{
         </ul>
         <button onClick={()=>toggleTheme()}>{theme==="light" ? '🔦' : '💡'}</button>
       </nav>
-      )}
-    </ThemeConsumer>
   );
 }
 

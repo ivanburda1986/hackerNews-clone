@@ -10,12 +10,12 @@ import {getHumanDate} from '../../utils/convertors';
 import {ThemeConsumer} from '../../contexts/theme';
 
 const StoryMetadata = (props) => {
+  const {theme} = React.useContext(ThemeConsumer);
+
   let time = getHumanDate(props.time);
   let wordWith = typeof props.commentCount === "number" ? "with":null;
   let wordComments = typeof props.commentCount === "number" ? "comments":null;
   return(
-  <ThemeConsumer>
-    {({theme})=>(
         <div className={classes.StoryDetails}>
           <div className={classesGlobal[`text-${theme}`]}>
             by<span/>{<Link to={"/user?id="+props.by}><span className={classesGlobal[`link-${theme}`]}>{props.by}</span></Link>}<span/>
@@ -25,9 +25,6 @@ const StoryMetadata = (props) => {
             {wordComments}
           </div>
         </div>
-    )
-    }
-  </ThemeConsumer>
   );
 };
 
